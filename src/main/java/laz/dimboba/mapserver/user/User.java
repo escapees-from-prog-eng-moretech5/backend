@@ -31,11 +31,11 @@ public class User implements UserDetails {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "address_latitude")
-    private double addressLatitude;
-
-    @Column(name = "address_longitude")
-    private double addressLongitude;
+//    @Column(name = "address_latitude")
+//    private double addressLatitude;
+//
+//    @Column(name = "address_longitude")
+//    private double addressLongitude;
 
 
     @Override

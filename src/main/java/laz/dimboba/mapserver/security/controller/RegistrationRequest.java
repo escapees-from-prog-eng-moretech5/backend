@@ -15,7 +15,4 @@ public class RegistrationRequest implements Serializable {
     private String password;
 
     private String name;
-    private double addressLatitude;
-    private double addressLongitude;
-
 }
