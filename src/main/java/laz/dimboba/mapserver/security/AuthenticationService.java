@@ -39,8 +39,8 @@ public class AuthenticationService {
         var user = User.builder()
                 .number(request.getNumber())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .addressLatitude(request.getAddressLatitude())
-                .addressLongitude(request.getAddressLongitude())
+//                .addressLatitude(request.getAddressLatitude())
+//                .addressLongitude(request.getAddressLongitude())
                 .name(request.getName())
                 .build();
         var savedUser = userService.saveUser(user);
