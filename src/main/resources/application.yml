@@ -1,13 +1,9 @@
-server:
-  port: 8080
-  address: 127.0.0.1
-
 place:
   registration-secret: "$2y$12$UVJKLcY6xGaH8LpoJw3LOub1UD.qnKd0gXIIdFuXHsevjGjeD35vO"
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/map
+    url: jdbc:postgresql://db:5432/map
     username: postgres
     password: qwe
     driver-class-name: org.postgresql.Driver
