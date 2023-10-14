@@ -1,6 +1,8 @@
-package laz.dimboba.mapserver.office;
+package laz.dimboba.mapserver.office.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import laz.dimboba.mapserver.office.Office;
+import laz.dimboba.mapserver.office.OfficeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

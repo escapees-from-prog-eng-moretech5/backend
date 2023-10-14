@@ -16,23 +16,18 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "offices_data")
-@IdClass(OfficeData.OfficeDataId.class)
 public class OfficeData implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
     @Column(name = "time")
     private Timestamp time;
 
-    @Id
     @Column(name = "office_id")
     private UUID officeId;
 
     @Column(name = "people")
     private int people;
 
-    @AllArgsConstructor
-    @Data
-    static class OfficeDataId implements Serializable {
-        private UUID officeId;
-        private Timestamp time;
-    }
 }

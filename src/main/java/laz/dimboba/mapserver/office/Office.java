@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -19,6 +20,12 @@ public class Office implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
+    private List<OfficeHours> openHours;
+
+    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
+    private List<OfficeHoursIndividual> openHoursIndividual;
 
     @Column(name = "sale_point_name")
     private String salePointName;
@@ -58,7 +65,7 @@ public class Office implements Serializable {
     private String metroStation;
 
     @Column(name = "distance")
-    private double precision;
+    private int distance;
 
     @Column(name = "kep")
     private boolean kep;
