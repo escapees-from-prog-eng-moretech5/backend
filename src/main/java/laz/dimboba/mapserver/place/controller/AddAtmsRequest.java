@@ -1,19 +1,19 @@
 package laz.dimboba.mapserver.place.controller;
 
-import laz.dimboba.mapserver.place.Type;
+import laz.dimboba.mapserver.atm.Atm;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.UUID;
+import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistrationRequest implements Serializable {
-    private UUID id;
+@Data
+@Builder
+public class AddAtmsRequest implements Serializable {
     private String password;
-    private int windows;
-    private Type type;
+    private List<Atm> atms;
 }

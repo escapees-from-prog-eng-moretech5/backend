@@ -33,9 +33,11 @@ public class PlaceService {
     public void updatePlace(DataRequest request, String ip) {
         var place = repository.findByIdAndType(request.getId(), request.getType())
                 .orElseThrow(() -> new NotFoundException("There is no place with id = " + request.getId()));
+        System.out.println(place);
         if(!Objects.equals(place.getIp(), ip)) {
             throw new ForbiddenException("Your ip has changed");
         }
+        System.out.println(request);
         switch (request.getType()) {
             case ATM -> atmDataRepository.save(
                     AtmData.builder()
