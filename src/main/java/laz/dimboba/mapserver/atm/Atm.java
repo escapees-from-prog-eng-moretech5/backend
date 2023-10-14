@@ -21,8 +21,7 @@ public class Atm implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToMany
-    @JoinColumn(name = "atm_id")
+    @OneToMany(mappedBy = "atm", cascade = CascadeType.ALL)
     private List<AtmServiceData> services;
 
     @Column(name = "code")

@@ -1,6 +1,8 @@
 package laz.dimboba.mapserver.atm;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import laz.dimboba.mapserver.office.Office;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,12 +17,16 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "atm_services")
-@IdClass(AtmServiceData.AtmServiceID.class)
 public class AtmServiceData {
 
     @Id
-    @Column(name = "atm_id")
-    private UUID atmId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "atm_id")
+    @JsonIgnore
+    private Atm atm;
 
     @Id
     @Column(name = "service")
@@ -35,10 +41,4 @@ public class AtmServiceData {
     @Column(name = "activity")
     private Activity activity;
 
-    @AllArgsConstructor
-    @Data
-    static class AtmServiceID implements Serializable {
-        private UUID atmId;
-        private String service;
-    }
 }

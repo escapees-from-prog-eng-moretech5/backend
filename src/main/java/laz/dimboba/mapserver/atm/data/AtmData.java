@@ -16,23 +16,18 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "atms_data")
-@IdClass(AtmData.AtmDataId.class)
 public class AtmData implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
     @Column(name = "time")
     private Timestamp time;
 
-    @Id
     @Column(name = "atm_id")
     private UUID atmId;
 
     @Column(name = "people")
     private int people;
 
-    @AllArgsConstructor
-    @Data
-    static class AtmDataId implements Serializable {
-        private UUID atmId;
-        private Timestamp time;
-    }
 }
