@@ -1,6 +1,5 @@
 package laz.dimboba.mapserver.place;
 
-import laz.dimboba.mapserver.exceptions.ConflictException;
 import laz.dimboba.mapserver.exceptions.ForbiddenException;
 import laz.dimboba.mapserver.exceptions.NotFoundException;
 import laz.dimboba.mapserver.exceptions.PlaceNotFoundException;
@@ -17,9 +16,6 @@ public class PlaceService {
     private final PlaceRepository repository;
 
     public void savePlace(Place place) {
-        if(repository.existsById(place.getId())) {
-            throw new ConflictException("There is place with id = " + place.getId());
-        }
         repository.save(place);
     }
 
@@ -34,7 +30,8 @@ public class PlaceService {
         if(!Objects.equals(place.getIp(), ip)) {
             throw new ForbiddenException("Your ip has changed");
         }
-        place.setCurrent(request.getCurrent());
+        //TODO: add data
+        //place.setCurrent(request.getCurrent());
         repository.save(place);
     }
 }

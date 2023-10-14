@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS places (
+    id UUID NOT NULL,
+    type VARCHAR(32) NOT NULL,
+    windows SMALLINT DEFAULT 0,
+    ip VARCHAR(32) NOT NULL,
+
+--    CONSTRAINT UNIQUE (id, type),
+    PRIMARY KEY(ip)
+)

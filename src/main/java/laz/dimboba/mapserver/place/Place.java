@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -14,20 +15,19 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "places")
-public class Place {
-    @Id
+public class Place implements Serializable {
+    @Column(name = "id")
     private UUID id;
 
     @Column(name = "type")
     @Enumerated(value = EnumType.STRING)
     private Type type;
 
+    @Id
     @Column(name = "ip")
     private String ip;
 
     @Column(name = "windows")
     private int windows;
 
-    @Column(name = "current")
-    private int current;
 }

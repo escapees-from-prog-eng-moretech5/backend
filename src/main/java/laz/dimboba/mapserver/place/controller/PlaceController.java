@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/place")
 @AllArgsConstructor
-@SecurityRequirement(name = "Bearer")
 public class PlaceController {
     private final PlaceAuthenticationService authenticationService;
     private final PlaceService placeService;
