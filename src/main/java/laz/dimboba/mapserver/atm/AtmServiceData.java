@@ -2,6 +2,7 @@ package laz.dimboba.mapserver.atm;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 @Entity
 @Table(name = "atm_services")
 @IdClass(AtmServiceData.AtmServiceID.class)
