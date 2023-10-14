@@ -2,6 +2,7 @@ package laz.dimboba.mapserver.place;
 
 import laz.dimboba.mapserver.exceptions.ForbiddenException;
 import laz.dimboba.mapserver.place.controller.PlaceRegistrationRequest;
+import laz.dimboba.mapserver.place.controller.PlaceRegistrationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,17 +18,15 @@ public class PlaceAuthenticationService {
     private final String secret;
     private final PasswordEncoder passwordEncoder;
     private final PlaceService placeService;
-    public void register(PlaceRegistrationRequest request, String ip) {
+    public PlaceRegistrationResponse register(PlaceRegistrationRequest request, String ip) {
         if(!isSecret(request.getPassword())) {
             throw new ForbiddenException("Wrong secret");
         }
         var place = Place.builder()
-            .id(request.getId())
-            .type(request.getType())
-            .windows(request.getWindows())
             .ip(ip)
             .build();
-        placeService.savePlace(place);
+
+        return placeService.savePlace(place);
     }
 
     public boolean isSecret(String password) {

@@ -3,11 +3,13 @@ package laz.dimboba.mapserver.place.controller;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.io.Serializable;
 
-@Data
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaceRegistrationRequest implements Serializable {
-    private String password;
+@Data
+public class IdIpPair {
+    private UUID officeId;
+    private String cameraIp;
 }

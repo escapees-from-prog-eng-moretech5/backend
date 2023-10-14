@@ -41,4 +41,5 @@ public class Atm implements Serializable {
 
     @Column(name = "all_day")
     private boolean allday;
+
 }

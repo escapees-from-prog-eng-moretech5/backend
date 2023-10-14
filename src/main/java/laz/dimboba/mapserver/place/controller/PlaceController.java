@@ -70,12 +70,13 @@ public class PlaceController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register (
+    public ResponseEntity<PlaceRegistrationResponse> register (
             @RequestBody PlaceRegistrationRequest request,
             HttpServletRequest http
     ) {
-        authenticationService.register(request, http.getRemoteAddr());
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok(
+                authenticationService.register(request, http.getRemoteAddr())
+        );
     }
 
     @PostMapping

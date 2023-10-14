@@ -7,6 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Hidden
-public interface PlaceRepository extends JpaRepository<Place, String> {
-    Optional<Place> findByIdAndType(UUID id, Type type);
+public interface PlaceRepository extends JpaRepository<Place, UUID> {
+    Optional<Place> findByIp (String ip);
 }

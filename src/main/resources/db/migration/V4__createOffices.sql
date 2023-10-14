@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS offices (
     distance INTEGER,
     kep BOOLEAN DEFAULT FALSE,
     my_branch BOOLEAN DEFAULT FALSE,
+    camera_ip VARCHAR(32) NOT NULL,
+    windows SMALLINT NOT NULL DEFAULT 1,
 
     PRIMARY KEY (id)
 

@@ -5,12 +5,16 @@ import laz.dimboba.mapserver.atm.data.AtmDataRepository;
 import laz.dimboba.mapserver.exceptions.ForbiddenException;
 import laz.dimboba.mapserver.exceptions.NotFoundException;
 import laz.dimboba.mapserver.exceptions.PlaceNotFoundException;
+import laz.dimboba.mapserver.office.OfficeRepository;
 import laz.dimboba.mapserver.office.data.OfficeData;
 import laz.dimboba.mapserver.office.data.OfficeDataRepository;
 import laz.dimboba.mapserver.place.controller.DataRequest;
+import laz.dimboba.mapserver.place.controller.IdIpPair;
+import laz.dimboba.mapserver.place.controller.PlaceRegistrationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,41 +23,37 @@ import java.util.UUID;
 public class PlaceService {
     private final PlaceRepository repository;
     private final OfficeDataRepository officeDataRepository;
-    private final AtmDataRepository atmDataRepository;
+    private final OfficeRepository officeRepository;
 
-    public void savePlace(Place place) {
+    public PlaceRegistrationResponse savePlace(Place place) {
         repository.save(place);
-    }
 
-    public Place getPlace(UUID id, Type type) throws PlaceNotFoundException{
-        return repository.findByIdAndType(id, type)
-                .orElseThrow(() -> new PlaceNotFoundException());
+        var list = officeRepository.findAll()
+            .stream()
+            .map(office -> new IdIpPair(office.getId(), office.getCameraIp()))
+            .toList();
+
+        return new PlaceRegistrationResponse(
+                place.getId(),
+                list
+        );
     }
 
     public void updatePlace(DataRequest request, String ip) {
-        var place = repository.findByIdAndType(request.getId(), request.getType())
+        var place = repository.findById(request.getId())
                 .orElseThrow(() -> new NotFoundException("There is no place with id = " + request.getId()));
-        System.out.println(place);
         if(!Objects.equals(place.getIp(), ip)) {
             throw new ForbiddenException("Your ip has changed");
         }
-        System.out.println(request);
-        switch (request.getType()) {
-            case ATM -> atmDataRepository.save(
-                    AtmData.builder()
-                        .people(request.getCurrent())
-                        .time(request.getTime())
-                        .atmId(request.getId())
-                        .build()
-            );
-            case OFFICE -> officeDataRepository.save(
-                    OfficeData.builder()
-                        .people(request.getCurrent())
-                        .time(request.getTime())
-                        .officeId(request.getId())
-                        .build()
-            );
-        }
+
+        officeDataRepository.save(
+            OfficeData.builder()
+                .people(request.getCurrent())
+                .time(request.getTime())
+                .officeId(request.getOfficeId())
+                .build()
+        );
+
 
         repository.save(place);
     }

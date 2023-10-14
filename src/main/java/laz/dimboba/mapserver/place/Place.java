@@ -16,18 +16,12 @@ import java.util.UUID;
 @Entity
 @Table(name = "places")
 public class Place implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "type")
-    @Enumerated(value = EnumType.STRING)
-    private Type type;
-
-    @Id
     @Column(name = "ip")
     private String ip;
-
-    @Column(name = "windows")
-    private int windows;
 
 }

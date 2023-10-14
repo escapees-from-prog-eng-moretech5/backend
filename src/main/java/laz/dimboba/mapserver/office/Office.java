@@ -1,5 +1,6 @@
 package laz.dimboba.mapserver.office;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -72,4 +73,12 @@ public class Office implements Serializable {
 
     @Column(name = "my_branch")
     private boolean myBranch;
+
+    @Column(name = "camera_ip")
+    @JsonIgnore
+    private String cameraIp;
+
+    @Column(name = "windows")
+    @JsonIgnore
+    private int windows;
 }
