@@ -1,4 +1,4 @@
-package laz.dimboba.mapserver.security.controller;
+package laz.dimboba.mapserver.user.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import laz.dimboba.mapserver.user.UserDTO;

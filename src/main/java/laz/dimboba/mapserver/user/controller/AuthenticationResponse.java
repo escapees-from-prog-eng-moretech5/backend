@@ -1,4 +1,4 @@
-package laz.dimboba.mapserver.security.controller;
+package laz.dimboba.mapserver.user.controller;
 
 
 import lombok.AllArgsConstructor;

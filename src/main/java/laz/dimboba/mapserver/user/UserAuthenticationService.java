@@ -1,9 +1,10 @@
-package laz.dimboba.mapserver.security;
+package laz.dimboba.mapserver.user;
 
-import laz.dimboba.mapserver.security.controller.AuthenticationRequest;
-import laz.dimboba.mapserver.security.controller.AuthenticationResponse;
-import laz.dimboba.mapserver.security.controller.RegistrationRequest;
-import laz.dimboba.mapserver.security.controller.RegistrationResponse;
+import laz.dimboba.mapserver.security.JwtService;
+import laz.dimboba.mapserver.user.controller.AuthenticationRequest;
+import laz.dimboba.mapserver.user.controller.AuthenticationResponse;
+import laz.dimboba.mapserver.user.controller.RegistrationRequest;
+import laz.dimboba.mapserver.user.controller.RegistrationResponse;
 import laz.dimboba.mapserver.user.User;
 import laz.dimboba.mapserver.user.UserDTO;
 import laz.dimboba.mapserver.user.UserService;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AuthenticationService {
+public class UserAuthenticationService {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;

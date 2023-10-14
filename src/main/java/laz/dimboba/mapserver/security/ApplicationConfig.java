@@ -1,6 +1,7 @@
 package laz.dimboba.mapserver.security;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,7 +32,11 @@ public class ApplicationConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(6);
+        return new BCryptPasswordEncoder(12);
     }
 
+    @Bean
+    public String registrationSecret(@Value("${place.registration-secret}") String secret) {
+        return secret;
+    }
 }
