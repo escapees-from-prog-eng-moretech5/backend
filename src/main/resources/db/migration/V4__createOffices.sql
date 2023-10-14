@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS offices (
     latitude DOUBLE PRECISION NOT NULL,
     longitude DOUBLE PRECISION NOT NULL,
     metro_station VARCHAR(500),
-    distance DOUBLE PRECISION,
+    distance INTEGER,
     kep BOOLEAN DEFAULT FALSE,
     my_branch BOOLEAN DEFAULT FALSE,
 
