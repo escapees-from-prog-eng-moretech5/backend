@@ -1,8 +1,12 @@
 package laz.dimboba.mapserver.place;
 
+import laz.dimboba.mapserver.atm.data.AtmData;
+import laz.dimboba.mapserver.atm.data.AtmDataRepository;
 import laz.dimboba.mapserver.exceptions.ForbiddenException;
 import laz.dimboba.mapserver.exceptions.NotFoundException;
 import laz.dimboba.mapserver.exceptions.PlaceNotFoundException;
+import laz.dimboba.mapserver.office.data.OfficeData;
+import laz.dimboba.mapserver.office.data.OfficeDataRepository;
 import laz.dimboba.mapserver.place.controller.DataRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PlaceService {
     private final PlaceRepository repository;
+    private final OfficeDataRepository officeDataRepository;
+    private final AtmDataRepository atmDataRepository;
 
     public void savePlace(Place place) {
         repository.save(place);
@@ -30,8 +36,23 @@ public class PlaceService {
         if(!Objects.equals(place.getIp(), ip)) {
             throw new ForbiddenException("Your ip has changed");
         }
-        //TODO: add data
-        //place.setCurrent(request.getCurrent());
+        switch (request.getType()) {
+            case ATM -> atmDataRepository.save(
+                    AtmData.builder()
+                        .people(request.getCurrent())
+                        .time(request.getTime())
+                        .atmId(request.getId())
+                        .build()
+            );
+            case OFFICE -> officeDataRepository.save(
+                    OfficeData.builder()
+                        .people(request.getCurrent())
+                        .time(request.getTime())
+                        .officeId(request.getId())
+                        .build()
+            );
+        }
+
         repository.save(place);
     }
 }
