@@ -2,12 +2,12 @@ package laz.dimboba.mapserver.office;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import laz.dimboba.mapserver.utils.DayOfTheWeek;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 @NoArgsConstructor
