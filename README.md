@@ -1,5 +1,5 @@
 # backend
-
+## API
 Ссылка на API: https://app.swaggerhub.com/apis/LAZARKOVDMITRY/mapVTB/v1 
 
 
@@ -25,3 +25,14 @@
 - /api/v1/place/predictions - позволяет загрузить mock данные наблюдения на сервер (пример файла - parsed_dataset_predictions.json)
 - /api/v1/place/atms - позволяет загрузить данные о банкоматах (пример файла - parsed_atm_data.json)
 - /api/v1/place/offices - позволяет загрузить mock данные о отделениях банка (пример файла - parsed_office_data.json)
+
+
+## STACK
+- Java Spring - фреймворк
+- Maven - система сборки
+- Spring Data Jpa, Hibernate - ORM
+- PostgreSQL - база данных
+- Docker - контейнеризатор
+- FlywayDB - отслеживание миграций базы данных
+- Spring Security, io.jsonwebtoken - Безопасность, BcryptEncoding, JWT
+- SpringDoc - Swagger generator
